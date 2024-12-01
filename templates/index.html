@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Personal Information -->
+        <div class="text-center">
+            <h1 class="mb-4">{{ personal_info.name }}</h1>
+            {% load static %}
+            <img src="{% static personal_info.photo_url %}" alt="Profile Picture" class="img-fluid mb-4" style="max-width: 200px; border-radius: 50%;">
+            <p>{{ personal_info.map_iframe|safe }}</p>
+            <p class="lead">{{ personal_info.bio }}</p>
+            <p><strong>Email:</strong> <a href="mailto:{{ personal_info.email }}">{{ personal_info.email }}</a></p>
+            <p><strong>Phone:</strong> {{ personal_info.phone }}</p>
+            <p><strong>Address:</strong> {{ personal_info.address }}</p>
+        </div>
+
+        <!-- Work Experience -->
+        <!-- <h2 class="mt-5">Work Experience</h2>
+        <div class="list-group">
+            {% for job in work_experience %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ job.job_title }}</h5>
+                    <p class="mb-1"><strong>{{ job.company_name }}</strong> ({{ job.start_date }} - {{ job.end_date|default:"Present" }})</p>
+                    <p class="small text-muted">{{ job.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        Skills 
+        <h2 class="mt-5">Skills</h2>
+        <div class="row">
+            {% for skill in skills %}
+                <div class="col-md-4 text-center mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: {{ skill.color_code }};">{{ skill.name }}</h5>
+                            <p class="card-text">{{ skill.proficiency }}%</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div> -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

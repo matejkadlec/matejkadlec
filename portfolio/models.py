@@ -3,12 +3,12 @@ from django.db import models
 
 class PersonalInfo(models.Model):
     name = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='assets/')
+    photo_url = models.CharField(max_length=100, default='assets/portrait.jpg')
     bio = models.TextField()
     email = models.EmailField()
-    phone = models.CharField(max_length=15, blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-    map_url = models.URLField(blank=True, null=True) 
+    map_iframe = models.TextField(max_length=1000, blank=True, null=True) 
 
     def __str__(self):
         return self.name
@@ -18,8 +18,8 @@ class WorkExperience(models.Model):
     job_title = models.CharField(max_length=100)
     company_name = models.CharField(max_length=100)
     start_date = models.DateField()
-    end_date = models.DateField(blank=True, null=True)  # Null for current job
-    description = models.TextField(blank=True)  # Details about the role
+    end_date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.job_title} at {self.company_name}"
@@ -39,7 +39,7 @@ class BlogPost(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    author = models.CharField(max_length=100, default="Admin")  # Default author
+    author = models.CharField(max_length=100, default="matej")
 
     def __str__(self):
         return self.title
@@ -55,10 +55,9 @@ class ContactForm(models.Model):
         return f"Message from {self.name}"
     
 
-class UserPreference(models.Model):
-    session_id = models.CharField(max_length=100, unique=True)  # Unique session ID
+class Theme(models.Model):
+    session_id = models.CharField(max_length=100, unique=True)
     theme = models.CharField(max_length=10, choices=[('light', 'Light'), ('dark', 'Dark')], default='light')
 
     def __str__(self):
         return f"Theme preference: {self.theme}"
-
